@@ -1,9 +1,12 @@
 import React from 'react';
-import './App.css';
+import Cards from './features/Posts/Cards/Cards';
+// import './App.css';
 
 function App() {
   return (
-    <></>
+    <>
+      <Cards />
+    </>
   );
 }
 
