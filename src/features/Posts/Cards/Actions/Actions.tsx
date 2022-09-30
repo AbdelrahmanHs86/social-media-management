@@ -1,5 +1,6 @@
 import React from 'react';
 import { approve, cancel, remove, options } from 'commons/images';
+import StyledActions from './ActionsStyled';
 
 const switchIcon = (stat: number) => {
   switch (stat) {
@@ -18,7 +19,7 @@ interface Props {
 
 const Actions: React.FC<Props> = ({ status }) => {
   return (
-    <ul>
+    <StyledActions>
       <a href="">{switchIcon(status)}</a>
       <a href="">
         <img src={remove} alt="delete" />
@@ -26,7 +27,7 @@ const Actions: React.FC<Props> = ({ status }) => {
       <a href="">
         <img src={options} alt="options" />
       </a>
-    </ul>
+    </StyledActions>
   );
 };
 
