@@ -18,20 +18,15 @@ const Cards: React.FC = () => {
   };
 
   const handleDate = (date: string) => {
-    const [dateValues, timeValues] = date.split(' ');
-    // const [year, month, day] = dateValues.split('-');
+    const [timeValues] = date.split(' ');
     const [hour, minute] = timeValues.split(':');
     let newDate = '';
     if (hour === '00' && minute === '00') {
       newDate = moment(date).format('DD MMMM YYYY');
-    }
-    // const newDate = new Date(+year, +month - 1, +day, +hour, +minute);
-    // console.log(newDate);
-    else {
+    } else {
       newDate = moment(date).format('DD MMMM YYYY - HH:mm');
     }
 
-    // const newDate = DateTime.fromSQL(date).toFormat();
     return newDate;
   };
 
