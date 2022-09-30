@@ -6,10 +6,16 @@ import Actions from './Actions/Actions';
 import PostStatus from './PostStatus/PostStatus';
 import moment from 'moment';
 import { Post } from 'commons/models';
+import imagePlaceholder from 'assets/no-post-image.png';
 
 const Cards: React.FC = () => {
   const posts = useAppSelector((state) => state.postsReducer);
   const dispatch = useAppDispatch();
+
+  const handleImage = (currentTarget: HTMLImageElement) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src = imagePlaceholder;
+  };
 
   const handleDate = (date: string) => {
     const [dateValues, timeValues] = date.split(' ');
@@ -45,7 +51,12 @@ const Cards: React.FC = () => {
               <li>{handleDate(post.published_at)}</li>
               <Actions status={post.status} />
               <div>{post.entry.message}</div>
-              <img src={post.entry.image[0]} />
+              <img
+                src={post.entry.image[0]}
+                onError={({ currentTarget }) => {
+                  handleImage(currentTarget);
+                }}
+              />
               <Reactions channel={post.account.channel} />
             </div>
           </div>
